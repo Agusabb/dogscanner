@@ -11,4 +11,3 @@ Keras==2.4.3
 keras-nightly==2.5.0.dev2021032900
 Keras-Preprocessing==1.1.2
 tensorflow-hub==0.12.0
-https://storage.googleapis.com/tensorflow/mac/tensorflow-0.5.0-py2-none-any.whl
