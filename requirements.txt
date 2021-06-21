@@ -7,4 +7,8 @@ Werkzeug==2.0.1
 numpy==1.19.5
 pandas==1.2.4
 scikit-learn==0.24.1
-https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.0.0-cp27-none-linux_x86_64.whl
+Keras==2.4.3
+keras-nightly==2.5.0.dev2021032900
+Keras-Preprocessing==1.1.2
+tensorflow-hub==0.12.0
+https://storage.googleapis.com/tensorflow/mac/tensorflow-0.5.0-py2-none-any.whl
