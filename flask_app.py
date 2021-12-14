@@ -1,14 +1,23 @@
-from __future__ import division, print_function
-# coding=utf-8
-import sys
 import os
-import glob
-import re
-import numpy as np
+import sys
 
+# Flask
+from flask import Flask, redirect, url_for, request, render_template, Response, jsonify, redirect
+from werkzeug.utils import secure_filename
+from gevent.pywsgi import WSGIServer
+
+# TensorFlow and tf.keras
 import tensorflow as tf
 from tensorflow import keras
+
+from tensorflow.keras.applications.imagenet_utils import preprocess_input, decode_predictions
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
 import tensorflow_hub as hub
+
+# Some utilites
+import numpy as np
+#from util import base64_to_pil
 
 # Create a function to load a trained model
 def load_model(model_path):
@@ -20,29 +29,18 @@ def load_model(model_path):
                                      custom_objects={"KerasLayer":hub.KerasLayer})
   return model
 
+# Define a flask app
+app = Flask(__name__)
 
 # Keras
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2
 model = MobileNetV2(weights='imagenet')
 
-#from keras.applications.imagenet_utils import preprocess_input, decode_predictions
-from keras.models import load_model
-from keras.preprocessing import image
-import tensorflow_hub as hub
-
-# Flask utils
-from flask import Flask, redirect, url_for, request, render_template
-from werkzeug.utils import secure_filename
-from gevent.pywsgi import WSGIServer
-
-# Define a flask app
-app = Flask(__name__)
-
 # Model saved with Keras model.save()
 MODEL_PATH = "C:/Users/agust/Desktop/Deployment-Deep-Learning-Model-master/Deployment-Deep-Learning-Model-master/my_model.h5"
 
 # Load your trained model
-model = keras.models.load_model(MODEL_PATH, custom_objects={"KerasLayer":hub.KerasLayer})
+model = load_model(MODEL_PATH)
 model.make_predict_function()          # Necessary
 print(f'{model} loaded. Start serving...')
 
@@ -108,4 +106,3 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 app.run(debug=True)
-

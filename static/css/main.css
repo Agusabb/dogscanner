@@ -5,7 +5,9 @@
     border: 5px solid #F8F8F8;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
     margin-top: 1em;
-    margin-bottom: 1em;    
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;    
 }
 
 .img-preview>div {
@@ -14,6 +16,8 @@
     background-size: 256px 256px;
     background-repeat: no-repeat;
     background-position: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 input[type="file"] {
